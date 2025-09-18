@@ -12,3 +12,10 @@ export const getProfile = () => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
+
+export const requestRide = (data) => {
+  const token = localStorage.getItem("jwtToken");
+  return axios.post(`${BASE_URL}/api/user/rides/request`, data, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
