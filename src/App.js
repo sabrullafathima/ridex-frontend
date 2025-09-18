@@ -7,8 +7,8 @@ import {
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
-import RideRequest from "./pages/RideRequest";
 import { getToken } from "./utils/auth";
+import RideRequest from "./pages/RideRequest";
 
 function PrivateRoute({ children }) {
   return getToken() ? children : <Navigate to="/login" />;

@@ -60,6 +60,9 @@ export default function RideRequest() {
         {response && (
           <div className="mt-6 bg-green-100 p-4 rounded text-green-800">
             <p>
+              <strong>Rider ID:</strong> {response.rideId}
+            </p>
+            <p>
               <strong>Rider ID:</strong> {response.riderId}
             </p>
             <p>

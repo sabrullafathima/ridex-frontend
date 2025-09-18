@@ -8,7 +8,7 @@ export const loginUser = (data) =>
   axios.post(`${BASE_URL}/api/auth/login`, data);
 export const getProfile = () => {
   const token = localStorage.getItem("jwtToken");
-  return axios.get(`${BASE_URL}/api/users/profile`, {
+  return axios.get(`${BASE_URL}/api/user/profile`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
