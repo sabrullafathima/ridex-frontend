@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { requestRide } from "../api/auth"; // import the new API
+import { requestRide } from "../api/auth";
+import Layout from "../components/Layout";
 
 export default function RideRequest() {
   const [pickup, setPickup] = useState("");
@@ -21,7 +22,7 @@ export default function RideRequest() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <Layout>
       <div className="bg-white p-8 rounded shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Request a Ride</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -86,6 +87,6 @@ export default function RideRequest() {
           </div>
         )}
       </div>
-    </div>
+    </Layout>
   );
 }
