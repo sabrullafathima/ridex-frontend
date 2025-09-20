@@ -16,7 +16,7 @@ export default function Login() {
     try {
       const res = await loginUser({ username, password });
       setToken(res.data.jwtToken);
-      navigate("/profile");
+      navigate("/details");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }
