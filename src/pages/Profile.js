@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserDetails } from "../api/authService";
-import Layout from "../components/Layout";
 import {
   getRequestedRides,
   getAcceptedRide,
@@ -10,6 +9,7 @@ import {
 } from "../api/rideService";
 import DriverDashboard from "./DriverDashboard";
 import RiderDashboard from "./RiderDashboard";
+import Layout from "../components/Layout";
 
 export default function Profile() {
   const [profile, setProfile] = useState({});
@@ -60,7 +60,8 @@ export default function Profile() {
   };
 
   return (
-    <Layout>
+    // <Layout>
+    <>
       {profile.role === "DRIVER" && (
         <DriverDashboard
           username={profile.username}
@@ -74,6 +75,7 @@ export default function Profile() {
       {profile.role === "RIDER" && (
         <RiderDashboard username={profile.username} />
       )}
-    </Layout>
+    </>
+    // </Layout>
   );
 }

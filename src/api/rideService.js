@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "https://ridex-backend-production.up.railway.app";
+// const BASE_URL = "https://ridex-backend-production.up.railway.app";
+const BASE_URL = "http://localhost:8080";
 
 const authHeader = () => ({
   headers: { Authorization: `Bearer ${localStorage.getItem("jwtToken")}` },

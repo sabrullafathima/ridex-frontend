@@ -1,9 +1,13 @@
-export default function Button({ children, onClick, type = "button" }) {
+// src/components/Button.js
+export default function Button({ children, gradient, ...props }) {
   return (
     <button
-      type={type}
-      onClick={onClick}
-      className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-all duration-300"
+      {...props}
+      className={`w-full py-2 rounded-lg font-bold text-white transition transform hover:scale-105 ${
+        gradient
+          ? "bg-gradient-to-r from-indigo-500 to-pink-500"
+          : "bg-gray-700 hover:bg-gray-800"
+      }`}
     >
       {children}
     </button>
