@@ -54,11 +54,6 @@ export default function Profile() {
     refreshRides();
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("jwtToken");
-    navigate("/login");
-  };
-
   return (
     <Layout>
       {profile.role === "DRIVER" && (

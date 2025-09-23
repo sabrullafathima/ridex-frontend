@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { requestRide } from "../api/auth";
 import Layout from "../components/Layout";
+import FormCard from "../components/FormCard";
+import Button from "../components/Button";
+import FormError from "../components/FormError";
+import Input from "../components/Input";
+import { MapPin, Flag } from "lucide-react";
 
 export default function RideRequest() {
   const [pickup, setPickup] = useState("");
@@ -23,69 +28,57 @@ export default function RideRequest() {
 
   return (
     <Layout>
-      <div className="bg-white p-8 rounded shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Request a Ride</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block font-medium mb-1">Pickup Location</label>
-            <input
+      <div className="flex justify-center items-center w-full">
+        <FormCard title="Request a Ride">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <FormError message={error} />
+            <Input
+              label="Pickup Location"
+              icon={<MapPin size={18} />}
               type="text"
               value={pickup}
               onChange={(e) => setPickup(e.target.value)}
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter pickup location"
               required
             />
-          </div>
 
-          <div>
-            <label className="block font-medium mb-1">Destination</label>
-            <input
+            <Input
+              label="Destination"
+              icon={<Flag size={18} />}
               type="text"
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter destination"
               required
             />
-          </div>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
-          >
-            Request Ride
-          </button>
-        </form>
-
-        {response && (
-          <div className="mt-6 bg-green-100 p-4 rounded text-green-800">
-            <p>
-              <strong>Rider ID:</strong> {response.rideId}
-            </p>
-            <p>
-              <strong>Rider ID:</strong> {response.riderId}
-            </p>
-            <p>
-              <strong>Driver ID:</strong> {response.driverId}
-            </p>
-            <p>
-              <strong>Pickup:</strong> {response.pickup}
-            </p>
-            <p>
-              <strong>Destination:</strong> {response.destination}
-            </p>
-            <p>
-              <strong>Status:</strong> {response.status}
-            </p>
-          </div>
-        )}
-
-        {error && (
-          <div className="mt-6 bg-red-100 p-4 rounded text-red-800">
-            {error}
-          </div>
-        )}
+            <Button type="submit" gradient fullWidth={false}>
+              Request Ride
+            </Button>
+          </form>
+          {response && (
+            <div className="mt-6 bg-indigo-500/20 p-4 rounded-xl text-indigo-200">
+              <p>
+                <strong>Ride ID:</strong> {response.rideId}
+              </p>
+              <p>
+                <strong>Rider ID:</strong> {response.riderId}
+              </p>
+              <p>
+                <strong>Driver ID:</strong> {response.driverId}
+              </p>
+              <p>
+                <strong>Pickup:</strong> {response.pickup}
+              </p>
+              <p>
+                <strong>Destination:</strong> {response.destination}
+              </p>
+              <p>
+                <strong>Status:</strong> {response.status}
+              </p>
+            </div>
+          )}
+        </FormCard>
       </div>
     </Layout>
   );
