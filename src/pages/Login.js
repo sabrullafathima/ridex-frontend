@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { loginUser } from "../api/auth";
 import { setToken } from "../utils/auth";
+import FormLayout from "../components/FormLayout";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { User, Lock } from "lucide-react";
+import FormCard from "../components/FormCard";
+import FormError from "../components/FormError";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -23,38 +27,41 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-6 text-2xl font-bold">
-          Mini Uber Ridex Login
-        </div>
-        <div className="bg-white p-6 rounded shadow-lg">
-          {error && <div className="text-red-500 mb-4">{error}</div>}
-          <form onSubmit={handleLogin}>
-            <Input
-              label="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <Input
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Button type="submit">Login</Button>
-          </form>
-          <p className="mt-4 text-sm">
-            Don't have an account?{" "}
+    <FormLayout>
+      <FormCard>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <FormError message={error} />
+
+          <Input
+            label="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            icon={<User className="text-gray-300" />}
+          />
+
+          <Input
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            icon={<Lock className="text-gray-300" />}
+          />
+
+          <Button type="submit" gradient>
+            Login
+          </Button>
+
+          <p className="mt-4 text-sm text-white text-center">
+            Don’t have an account?{" "}
             <span
-              className="text-blue-600 cursor-pointer"
+              className="text-indigo-300 cursor-pointer hover:underline"
               onClick={() => navigate("/register")}
             >
               Register
             </span>
           </p>
-        </div>
-      </div>
-    </div>
+        </form>
+      </FormCard>
+    </FormLayout>
   );
 }
